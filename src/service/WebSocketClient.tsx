@@ -1,3 +1,4 @@
+import { send } from 'process';
 import React, { useState, useCallback, useMemo, useRef } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
@@ -6,20 +7,25 @@ export const WebSocketClient = () => {
     const [socketUrl, setSocketUrl] = useState('ws://localhost:3002');
     const messageHistory = useRef([]);
 
+
     const {
         sendMessage,
         lastMessage,
         readyState,
     } = useWebSocket(socketUrl);
+    console.log(lastMessage);
 
     // messageHistory.current = useMemo(() =>
     //     messageHistory.current.concat(lastMessage), [lastMessage]);
 
-    const handleClickChangeSocketUrl = useCallback(() =>
-        setSocketUrl('ws://localhost:3002'), []);
+    const connect = useCallback(() => {
+        setSocketUrl('ws://localhost:3002')
+        sendMessage('connect')
+    }
+        , []);
 
     const handleClickSendMessage = useCallback(() =>
-        sendMessage('Hello'), []);
+        sendMessage('say'), []);
 
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
@@ -32,9 +38,9 @@ export const WebSocketClient = () => {
     return (
         <div>
             <button
-                onClick={handleClickChangeSocketUrl}
+                onClick={connect}
             >
-                Click Me to change Socket Url
+                Connect
             </button>
             <button
                 onClick={handleClickSendMessage}
