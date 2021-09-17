@@ -7,18 +7,25 @@ const ControlPanel = () => {
     return (
         <div className="control-panel-wrapper">
             <div className="controls">
-                <div>
-                    <NetworkStatus />
+                <div className="card-padding">
+                    <div className="card">
+                        <NetworkStatus />
+                    </div>
                 </div>
-                <div className="controls-wrapper">
-                    <Controls />
+                <div className="card-padding">
+                    <div className="controls-wrapper card">
+                        <Controls />
+                    </div>
                 </div>
             </div>
-            <div className="logs-wrapper">
-                <div className="logs">
-                    <Logs />
+            <div className="card-padding">
+                <div className="logs-wrapper card">
+                    <div className="logs">
+                        <Logs />
+                    </div>
                 </div>
             </div>
+
         </div>
     )
 }

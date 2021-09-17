@@ -2,6 +2,7 @@
 .logs-table{
     width: 100%;
     border-collapse: collapse;
+    overflow-y: scroll;
 }
 
 .logs-table-body{
