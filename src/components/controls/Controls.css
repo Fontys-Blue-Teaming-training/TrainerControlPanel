@@ -1,12 +1,12 @@
 .form-wrapper{
     padding: 50px;
-    display: flex;
-    flex-wrap: wrap;
+    flex: 1 1;
 }
 
 .attack-status {
     padding-top: 50px;
     width: 100%;
+    height: 100%;
 }
 
 .form {
@@ -15,12 +15,24 @@
     width: 100%;
 }
 
+.upper {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.lmfao {
+    width:100%;
+    padding-bottom: 10px;
+}
+
 .overview {
     text-align: center;
 }
 
 .attack-selection {
     width: 100%;
+    margin-bottom: 100px;
 }
 
 .start-button {
