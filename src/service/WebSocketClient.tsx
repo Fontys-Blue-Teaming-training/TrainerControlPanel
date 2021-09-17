@@ -19,7 +19,7 @@ export const WebSocketClient = () => {
     //     messageHistory.current.concat(lastMessage), [lastMessage]);
 
     const connect = useCallback(() => {
-        setSocketUrl('ws://localhost:3002')
+        setSocketUrl('ws://localhost:8765')
         sendMessage('connect')
     }
         , []);

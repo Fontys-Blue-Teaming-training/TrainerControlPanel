@@ -1,12 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import WebSocketClient from './service/WebSocketClient';
+import ControlPanel from './components/control-panel/ControlPanel';
 
 function App() {
   return (
     <div className="App">
-      <WebSocketClient />
+      <ControlPanel />
     </div>
   );
 }

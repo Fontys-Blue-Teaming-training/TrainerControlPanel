@@ -1,0 +1,38 @@
+.form-wrapper{
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.attack-status {
+    padding-top: 50px;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.overview {
+    text-align: center;
+}
+
+.attack-selection {
+    width: 100%;
+}
+
+.start-button {
+    width: 50%;
+    margin: 500px;
+}
+
+.stop-button {
+    width: 50%;
+}
+
+.reroll-button {
+    width: 100%;
+    padding: 10%;
+}
