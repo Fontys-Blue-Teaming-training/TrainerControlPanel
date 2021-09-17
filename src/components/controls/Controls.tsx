@@ -9,10 +9,10 @@ const Controls = () => {
     };
 
     return (
-        <div className="upper">
-            <div className="form-wrapper">
-                <div className="form flex-item">
-                    <div className="lmfao">
+        <div className="controls-container">
+            <div className="form-container padding">
+                <div className="form">
+                    <div className="align-horizontal">
                         <FormControl fullWidth className="attack-selection">
                             <InputLabel id="demo-simple-select-label">Select Attack Type</InputLabel>
                             <Select
@@ -29,15 +29,15 @@ const Controls = () => {
                         </FormControl>
                     </div>
 
-                    <div className="lmfao">
-                        <Button variant="outlined" className="start-button flex-item">Start Attack</Button>
-                        <Button variant="outlined" className="stop-button flex-item">Stop Attack</Button>
+                    <div className="align-horizontal">
+                        <Button variant="outlined" className="start-button">Start Attack</Button>
+                        <Button variant="outlined" className="stop-button">Stop Attack</Button>
                     </div>
-                    <Button variant="outlined" className="reroll-button flex-item">Reroll Environment</Button>
+                    <Button variant="outlined" className="reroll-button">Reroll Environment</Button>
                 </div>
 
             </div>
-            <div className="form-wrapper">
+            <div className="form-container">
                 <div className="attack-status">
                     <div className="overview">
                         <li>
