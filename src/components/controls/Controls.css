@@ -1,45 +1,16 @@
-.form-container{
-    flex: 1 1;
-}
-
-.attack-status {
-    width: 100%;
-    height: 100%;
-}
-
-.form {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.controls-container {
-    height: 100%;
-    display: flex;
-    flex-flow: column;
-}
-
 .align-horizontal {
-    width:100%;
     padding-bottom: 10px;
 }
 
-.overview {
-    text-align: center;
-}
-
-.attack-selection {
-    width: 100%;
-    margin-bottom: 100px;
-}
 
 .start-button {
-    width: 50%;
+    width: 49%;
     margin: 500px;
+    margin-right: 2% !important;
 }
 
 .stop-button {
-    width: 50%;
+    width: 49%;
 }
 
 .reroll-button {
