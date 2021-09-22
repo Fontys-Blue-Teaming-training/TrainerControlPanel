@@ -5,29 +5,19 @@ import './ControlPanel.css';
 
 const ControlPanel = () => {
     return (
-        <div className="container">
-            <div className="control-panel-wrapper">
-                <div className="controls">
-                    <div className="card-padding">
-                        <div className="controls-wrapper card">
-                            <NetworkStatus />
-                        </div>
+        <div className="controlpanel-wrapper">
+            <div className="controlpanel-grid-layout">
+                    <div className="network-status card">
+                        <NetworkStatus/>
                     </div>
-                    <div className="card-padding">
-                        <div className="controls-wrapper card">
-                            <Controls />
-                        </div>
+                    <div className="controls card">
+                        <Controls />
                     </div>
-                </div>
-                <div className="card-padding">
-                    <div className="logs-wrapper card">
-                        <Logs />
+                    <div className="logs card">
+                        <Logs/>
                     </div>
-                </div>
-
             </div>
         </div>
-
     )
 }
 
