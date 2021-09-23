@@ -13,7 +13,7 @@ const Controls = () => {
             <div className="form-container padding">
                 <div className="form">
                     <div className="align-horizontal">
-                        <FormControl fullWidth className="attack-selection">
+                        <FormControl variant="outlined" fullWidth className="attack-selection">
                             <InputLabel id="demo-simple-select-label">Select Attack Type</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -30,10 +30,10 @@ const Controls = () => {
                     </div>
 
                     <div className="align-horizontal">
-                        <Button variant="outlined" className="start-button">Start Attack</Button>
-                        <Button variant="outlined" className="stop-button">Stop Attack</Button>
+                        <Button variant="contained" className="start-button cbutton">Start Attack</Button>
+                        <Button variant="contained" className="stop-button cbutton">Stop Attack</Button>
                     </div>
-                    <Button variant="outlined" className="reroll-button">Reroll Environment</Button>
+                    <Button variant="contained" className="reroll-button cbutton">Reroll Environment</Button>
                 </div>
 
             </div>

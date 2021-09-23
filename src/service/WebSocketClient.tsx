@@ -4,7 +4,7 @@ import useWebSocket, { ReadyState } from 'react-use-websocket';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
-    const [socketUrl, setSocketUrl] = useState('ws://localhost:3002');
+    const [socketUrl, setSocketUrl] = useState('ws://145.93.60.72:3002');
     const messageHistory = useRef([]);
 
 
@@ -19,7 +19,7 @@ export const WebSocketClient = () => {
     //     messageHistory.current.concat(lastMessage), [lastMessage]);
 
     const connect = useCallback(() => {
-        setSocketUrl('ws://localhost:8765')
+        setSocketUrl('ws://145.93.60.72:3002')
         sendMessage('connect')
     }
         , []);

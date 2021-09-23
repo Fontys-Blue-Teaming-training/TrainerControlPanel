@@ -7,15 +7,15 @@ const ControlPanel = () => {
     return (
         <div className="controlpanel-wrapper">
             <div className="controlpanel-grid-layout">
-                    <div className="network-status card">
-                        <NetworkStatus/>
-                    </div>
-                    <div className="controls card">
-                        <Controls />
-                    </div>
-                    <div className="logs card">
-                        <Logs/>
-                    </div>
+                <div className="network-status card card-image">
+                    <NetworkStatus />
+                </div>
+                <div className="controls card card-image">
+                    <Controls />
+                </div>
+                <div className="logs card card-image">
+                    <Logs />
+                </div>
             </div>
         </div>
     )

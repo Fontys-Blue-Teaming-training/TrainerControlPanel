@@ -1,167 +1,128 @@
 import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import { styled } from '@mui/material/styles';
+import { maxWidth } from '@mui/system';
+import './Logs.css';
+
 
 const Logs = () => {
 
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: "#2A2B2E",
+            color: theme.palette.common.white,
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+        },
+    }));
+
+    const StyledTableRow = styled(TableRow)(({ theme }) => ({
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
+        // hide last border
+        '&:last-child td, &:last-child th': {
+            border: 0,
+        },
+    }));
+
+    const columns = [
+        {
+            id: 'time',
+            label: 'Time',
+            minWidth: 100,
+            maxWidth: 150
+        },
+        {
+            id: 'host',
+            label: 'Host',
+            minWidth: 100,
+            maxWidth: 150
+
+        },
+        {
+            id: 'messageType',
+            label: 'Event Type',
+            minWidth: 100,
+            maxWidth: 150,
+        },
+        {
+            id: 'event',
+            label: 'Event',
+            minWidth: 170,
+        },
+    ];
+
+    function createData(time: Date, host: string, ip: string, event: string, messageType: string) {
+        return { time, host, ip, event, messageType };
+    }
+
+    const rows = [
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
+    ];
+
     return (
-        <div className="logs-container">
-             <table className="logs-table">
-             <thead>
-                 <tr>
-                     <th>Author</th>
-                     <th>Title</th>
-                     <th>Year</th>
-                     <th>ISBN-13</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <tr>
-                     <td>Miguel De Cervantes</td>
-                     <td>The Ingenious Gentleman Don Quixote of La Mancha</td>
-                     <td>1605</td>
-                     <td>9783125798502</td>
-                 </tr>
-                 <tr>
-                     <td>Gabrielle-Suzanne Barbot de Villeneuve</td>
-                     <td>La Belle et la Bête</td>
-                     <td>1740</td>
-                     <td>9781910880067</td>
-                 </tr>
-                 <tr>
-                     <td>Sir Isaac Newton</td>
-                     <td>The Method of Fluxions and Infinite Series: With Its Application to the Geometry of Curve-lines</td>
-                     <td>1763</td>
-                     <td>9781330454862</td>
-                 </tr>
-                 <tr>
-                     <td>Mary Shelley</td>
-                     <td>Frankenstein; or, The Modern Prometheus</td>
-                     <td>1818</td>
-                     <td>9781530278442</td>
-                 </tr>
-                 <tr>
-                     <td>Herman Melville</td>
-                     <td>Moby-Dick; or, The Whale</td>
-                     <td>1851</td>
-                     <td>9781530697908</td>
-                 </tr>
-                 <tr>
-                     <td>Emma Dorothy Eliza Nevitte Southworth</td>
-                     <td>The Hidden Hand</td>
-                     <td>1888</td>
-                     <td>9780813512969</td>
-                 </tr>
-                 <tr>
-                     <td>F. Scott Fitzgerald</td>
-                     <td>The Great Gatsby</td>
-                     <td>1925</td>
-                     <td>9780743273565</td>
-                 </tr>
-                 <tr>
-                     <td>George Orwell</td>
-                     <td>Nineteen Eighty-Four</td>
-                     <td>1948</td>
-                     <td>9780451524935</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-                 <tr>
-                     <td>Nnedi Okorafor</td>
-                     <td>Who Fears Death</td>
-                     <td>2010</td>
-                     <td>9780756406691</td>
-                 </tr>
-             </tbody>
-         </table>
+        <div className="table-container">
+            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                <TableContainer sx={{ maxHeight: 440 }}>
+                    <Table stickyHeader aria-label="sticky table">
+                        <TableHead>
+                            <StyledTableRow>
+                                {columns.map((column) => (
+                                    <StyledTableCell
+                                        key={column.id}
+                                        align={"left"}
+                                        style={{ width: column.maxWidth }}
+                                    >
+                                        {column.label}
+                                    </StyledTableCell>
+                                ))}
+                            </StyledTableRow>
+                        </TableHead>
+                        <TableBody>
+                            {rows.map((row) => {
+                                return (
+                                    <StyledTableRow hover role="checkbox" tabIndex={-1}>
+                                        <StyledTableCell size="small">
+                                            {row.time.toLocaleTimeString()}
+                                        </StyledTableCell>
+                                        <StyledTableCell size="small">
+                                            {row.host} [{row.ip}]
+                                        </StyledTableCell>
+                                        <StyledTableCell size="small">
+                                            {row.messageType}
+                                        </StyledTableCell>
+                                        <StyledTableCell size="small">
+                                            {row.event}
+                                        </StyledTableCell>
+                                    </StyledTableRow>
+                                );
+                            })}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Paper>
         </div>
-     );
+
+    );
+
+
 }
 
 export default Logs;

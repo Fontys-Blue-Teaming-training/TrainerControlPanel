@@ -6,6 +6,7 @@ import ControlPanel from './components/control-panel/ControlPanel';
 function App() {
   return (
     <div className="App">
+      <WebSocketClient />
       <ControlPanel />
     </div>
   );

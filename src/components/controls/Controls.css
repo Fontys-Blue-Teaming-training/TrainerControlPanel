@@ -21,3 +21,16 @@
 .padding {
     padding: 50px;
 }
+
+.cbutton {
+    background-color: whitesmoke !important;
+    color: black !important;
+}
+
+.attack-selection {
+    color: whitesmoke !important;
+}
+
+.MuiSelect-root {
+    background-color: whitesmoke;
+}
