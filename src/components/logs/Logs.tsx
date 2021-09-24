@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,9 +9,13 @@ import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import { maxWidth } from '@mui/system';
 import './Logs.css';
+import { ControlPanelContext } from '../../context/ControlPanelContext';
+import { InfoMessage } from '../../interface/InfoMessage';
+import { InfoType } from '../../enum/InfoType';
 
 
 const Logs = () => {
+    const { messageLog, setMessageLog, lastMessageId } = React.useContext(ControlPanelContext);
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -60,22 +64,14 @@ const Logs = () => {
         },
     ];
 
-    function createData(time: Date, host: string, ip: string, event: string, messageType: string) {
-        return { time, host, ip, event, messageType };
-    }
-
-    const rows = [
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-        createData(new Date, 'My PC', '127.0.0.1', 'DDOS Attack detected', 'Warning'),
-    ];
+    useEffect(() => {
+        console.log("scroll");
+        console.log(lastMessageId.toString());
+        let id = (lastMessageId - 1).toString();
+        console.log(typeof id);
+        let el = document.getElementById(id)?.scrollIntoView();
+        console.log(el);
+    }, [messageLog]);
 
     return (
         <div className="table-container">
@@ -96,33 +92,36 @@ const Logs = () => {
                             </StyledTableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => {
-                                return (
-                                    <StyledTableRow hover role="checkbox" tabIndex={-1}>
-                                        <StyledTableCell size="small">
-                                            {row.time.toLocaleTimeString()}
-                                        </StyledTableCell>
-                                        <StyledTableCell size="small">
-                                            {row.host} [{row.ip}]
-                                        </StyledTableCell>
-                                        <StyledTableCell size="small">
-                                            {row.messageType}
-                                        </StyledTableCell>
-                                        <StyledTableCell size="small">
-                                            {row.event}
-                                        </StyledTableCell>
-                                    </StyledTableRow>
-                                );
-                            })}
+                            {
+                                messageLog.length > 0 ?
+                                    messageLog.map((row) => {
+                                        return (
+                                            <StyledTableRow hover role="checkbox" tabIndex={-1} id={row['id']}>
+                                                <StyledTableCell size="small">
+                                                    {row['time']}
+                                                </StyledTableCell>
+                                                <StyledTableCell size="small">
+                                                    {row['Host']['HostName']} [{row['Host']['Ip']}]
+                                                </StyledTableCell>
+                                                <StyledTableCell size="small">
+                                                    {row['InfoType']}
+                                                </StyledTableCell>
+                                                <StyledTableCell size="small">
+                                                    {row['Message']}
+                                                </StyledTableCell>
+                                            </StyledTableRow>
+                                        );
+                                    })
+                                    :
+                                    <div></div>
+                            }
+
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
-        </div>
-
+        </div >
     );
-
-
 }
 
 export default Logs;
