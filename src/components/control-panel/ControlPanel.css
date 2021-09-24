@@ -20,6 +20,7 @@
 .logs {
   width: 96%;
   height: 93%;
+  max-height: 350px;
   grid-row-start: 2;
   grid-column-start: 1;
   grid-column-end: 4;

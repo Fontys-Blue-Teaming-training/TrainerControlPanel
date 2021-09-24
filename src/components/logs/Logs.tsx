@@ -65,19 +65,15 @@ const Logs = () => {
     ];
 
     useEffect(() => {
-        console.log("scroll");
-        console.log(lastMessageId.toString());
         let id = (lastMessageId - 1).toString();
-        console.log(typeof id);
-        let el = document.getElementById(id)?.scrollIntoView();
-        console.log(el);
+        document.getElementById(id)?.scrollIntoView();
     }, [messageLog]);
 
     return (
         <div className="table-container">
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 <TableContainer sx={{ maxHeight: 440 }}>
-                    <Table stickyHeader aria-label="sticky table">
+                    <Table aria-label="sticky table">
                         <TableHead>
                             <StyledTableRow>
                                 {columns.map((column) => (

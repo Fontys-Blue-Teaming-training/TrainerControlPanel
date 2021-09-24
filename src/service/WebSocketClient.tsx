@@ -21,8 +21,6 @@ export const WebSocketClient = () => {
     useEffect(() => {
         if (lastMessage) {
             setLastMessageId(lastMessageId + 1);
-
-            const array = [] as any;
             const json = JSON.parse(lastMessage['data']);
             const date = new Date();
             json['time'] = date.toLocaleTimeString();
@@ -52,7 +50,7 @@ export const WebSocketClient = () => {
 
     return (
         <div>
-            <button
+            {/* <button
                 onClick={connect}
             >
                 Connect
@@ -65,7 +63,7 @@ export const WebSocketClient = () => {
             </button>
             <span>The WebSocket is currently {connectionStatus}</span>
             {lastMessage ? <span>Last message: {lastMessage.data}</span> : <div></div>}
-            {/* <ul>
+            <ul>
                 {messageHistory.current
                     .map((message, idx) => <span key={idx}></span>)}
             </ul> */}
