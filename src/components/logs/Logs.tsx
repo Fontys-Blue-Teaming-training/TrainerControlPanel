@@ -7,11 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
-import { maxWidth } from '@mui/system';
 import './Logs.css';
 import { ControlPanelContext } from '../../context/ControlPanelContext';
-import { InfoMessage } from '../../interface/InfoMessage';
-import { InfoType } from '../../enum/InfoType';
 
 
 const Logs = () => {
@@ -92,18 +89,18 @@ const Logs = () => {
                                 messageLog.length > 0 ?
                                     messageLog.map((row) => {
                                         return (
-                                            <StyledTableRow hover role="checkbox" tabIndex={-1} id={row['id']}>
+                                            <StyledTableRow hover role="checkbox" tabIndex={-1} id={row.id.toString()}>
                                                 <StyledTableCell size="small">
-                                                    {row['time']}
+                                                    {row.time.toLocaleTimeString()}
                                                 </StyledTableCell>
                                                 <StyledTableCell size="small">
-                                                    {row['Host']['HostName']} [{row['Host']['Ip']}]
+                                                    {row.host.hostName} [{row.host.ip}]
                                                 </StyledTableCell>
                                                 <StyledTableCell size="small">
-                                                    {row['InfoType']}
+                                                    {row.infoType}
                                                 </StyledTableCell>
                                                 <StyledTableCell size="small">
-                                                    {row['Message']}
+                                                    {row.message}
                                                 </StyledTableCell>
                                             </StyledTableRow>
                                         );

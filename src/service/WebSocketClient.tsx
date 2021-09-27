@@ -2,14 +2,24 @@ import { send } from 'process';
 import React, { useState, useCallback, useMemo, useRef, useEffect, useContext } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { ControlPanelContext } from '../context/ControlPanelContext';
-import { InfoMessage } from '../interface/InfoMessage';
+import { Host } from '../models/Host';
+import { InfoMessage } from '../models/InfoMessage';
+import { Scenario } from '../models/Scenario';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
-    const [socketUrl, setSocketUrl] = useState('ws://145.93.60.191:3002');
-    const { messageLog, setMessageLog, lastMessageId, setLastMessageId } = useContext(ControlPanelContext);
-    // const messageHistory = useRef([]);
-
+    const [socketUrl, setSocketUrl] = useState('ws://192.168.132.1:3002');
+    const { 
+        messageLog, 
+        setMessageLog, 
+        lastMessageId, 
+        setLastMessageId, 
+        startAttack, 
+        setStartAttack, 
+        attackSelection, 
+        stopAttack, 
+        setStopAttack
+    } = useContext(ControlPanelContext);
 
     const {
         sendMessage,
@@ -17,28 +27,54 @@ export const WebSocketClient = () => {
         readyState,
     } = useWebSocket(socketUrl);
 
-
     useEffect(() => {
         if (lastMessage) {
+            //Set id of message
             setLastMessageId(lastMessageId + 1);
+            //Parse JSON and construct object
             const json = JSON.parse(lastMessage['data']);
             const date = new Date();
-            json['time'] = date.toLocaleTimeString();
-            json['id'] = lastMessageId;
-            setMessageLog(old => [...old, json]);
+            const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
+            const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], json['InfoType']);
+            //Add entry to message log
+            setMessageLog(old => [...old, infoMessage]);
         }
     }, [lastMessage]);
 
-    // messageHistory.current = useMemo(() =>
-    //     messageHistory.current.concat(lastMessage), [lastMessage]);
+    useEffect(() => {
+        if(startAttack){
+            switch(attackSelection){
+                case "":
+                    console.log('Throw error.');
+                    break;
+                case "ssh-bruteforce":
+                    const scenario = new Scenario(0, 0)
+                    sendMessage(JSON.stringify(scenario));
+                    break;
+            }
+        }
+        setStartAttack(false);
+    }, [startAttack]);
+
+    useEffect(() => {
+        if(stopAttack){
+            switch(attackSelection){
+                case "":
+                    console.log('Throw error.');
+                    break;
+                case "ssh-bruteforce":
+                    const scenario = new Scenario(0, 2)
+                    sendMessage(JSON.stringify(scenario));
+                    break;
+            }
+        }
+        setStopAttack(false);
+    }, [stopAttack]);
 
     const connect = useCallback(() => {
         setSocketUrl('ws://145.93.60.191:3002')
         sendMessage('connect')
     }, []);
-
-    const handleClickSendMessage = useCallback(() =>
-        sendMessage('say'), []);
 
     const connectionStatus = {
         [ReadyState.CONNECTING]: 'Connecting',
@@ -50,23 +86,6 @@ export const WebSocketClient = () => {
 
     return (
         <div>
-            {/* <button
-                onClick={connect}
-            >
-                Connect
-            </button>
-            <button
-                onClick={handleClickSendMessage}
-                disabled={readyState !== ReadyState.OPEN}
-            >
-                Click Me to send 'Hello'
-            </button>
-            <span>The WebSocket is currently {connectionStatus}</span>
-            {lastMessage ? <span>Last message: {lastMessage.data}</span> : <div></div>}
-            <ul>
-                {messageHistory.current
-                    .map((message, idx) => <span key={idx}></span>)}
-            </ul> */}
         </div>
     );
 };

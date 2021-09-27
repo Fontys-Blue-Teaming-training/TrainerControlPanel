@@ -1,8 +1,14 @@
-import { InfoMessage } from "./InfoMessage";
+import { InfoMessage } from "../models/InfoMessage";
 
 export interface IControlPanelContext {
-    messageLog: any[];
-    setMessageLog: React.Dispatch<React.SetStateAction<any[]>>;
+    messageLog: InfoMessage[];
+    setMessageLog: React.Dispatch<React.SetStateAction<InfoMessage[]>>;
     lastMessageId: number;
     setLastMessageId: React.Dispatch<React.SetStateAction<number>>;
+    attackSelection: string;
+    setAttackSelection: React.Dispatch<React.SetStateAction<string>>;
+    startAttack: boolean;
+    setStartAttack: React.Dispatch<React.SetStateAction<boolean>>;
+    stopAttack: boolean;
+    setStopAttack: React.Dispatch<React.SetStateAction<boolean>>;
 }
