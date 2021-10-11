@@ -1,0 +1,25 @@
+
+
+.machine-metrics {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.metrics-graph {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.item {
+    flex-grow: 1;
+}
+
+.graph {
+    width: 40%;
+}
+
+.status-view {
+    overflow: hidden;
+}

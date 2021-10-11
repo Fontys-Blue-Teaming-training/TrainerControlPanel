@@ -8,16 +8,16 @@ import { Scenario } from '../models/Scenario';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
-    const [socketUrl, setSocketUrl] = useState('ws://192.168.132.1:3002');
-    const { 
-        messageLog, 
-        setMessageLog, 
-        lastMessageId, 
-        setLastMessageId, 
-        startAttack, 
-        setStartAttack, 
-        attackSelection, 
-        stopAttack, 
+    const [socketUrl, setSocketUrl] = useState('ws://192.168.1.167:3002');
+    const {
+        messageLog,
+        setMessageLog,
+        lastMessageId,
+        setLastMessageId,
+        startAttack,
+        setStartAttack,
+        attackSelection,
+        stopAttack,
         setStopAttack
     } = useContext(ControlPanelContext);
 
@@ -42,8 +42,9 @@ export const WebSocketClient = () => {
     }, [lastMessage]);
 
     useEffect(() => {
-        if(startAttack){
-            switch(attackSelection){
+        if (startAttack) {
+            console.log("hello");
+            switch (attackSelection) {
                 case "":
                     console.log('Throw error.');
                     break;
@@ -57,8 +58,8 @@ export const WebSocketClient = () => {
     }, [startAttack]);
 
     useEffect(() => {
-        if(stopAttack){
-            switch(attackSelection){
+        if (stopAttack) {
+            switch (attackSelection) {
                 case "":
                     console.log('Throw error.');
                     break;
@@ -72,7 +73,7 @@ export const WebSocketClient = () => {
     }, [stopAttack]);
 
     const connect = useCallback(() => {
-        setSocketUrl('ws://145.93.60.191:3002')
+        setSocketUrl('ws://192.168.1.167:3002')
         sendMessage('connect')
     }, []);
 

@@ -67,52 +67,54 @@ const Logs = () => {
     }, [messageLog]);
 
     return (
-        <div className="table-container">
-            <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
-                    <Table aria-label="sticky table">
-                        <TableHead>
-                            <StyledTableRow>
-                                {columns.map((column) => (
-                                    <StyledTableCell
-                                        key={column.id}
-                                        align={"left"}
-                                        style={{ width: column.maxWidth }}
-                                    >
-                                        {column.label}
-                                    </StyledTableCell>
-                                ))}
-                            </StyledTableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                messageLog.length > 0 ?
-                                    messageLog.map((row) => {
-                                        return (
-                                            <StyledTableRow hover role="checkbox" tabIndex={-1} id={row.id.toString()}>
-                                                <StyledTableCell size="small">
-                                                    {row.time.toLocaleTimeString()}
-                                                </StyledTableCell>
-                                                <StyledTableCell size="small">
-                                                    {row.host.hostName} [{row.host.ip}]
-                                                </StyledTableCell>
-                                                <StyledTableCell size="small">
-                                                    {row.infoType}
-                                                </StyledTableCell>
-                                                <StyledTableCell size="small">
-                                                    {row.message}
-                                                </StyledTableCell>
-                                            </StyledTableRow>
-                                        );
-                                    })
-                                    :
-                                    <div></div>
-                            }
+        <div className="logs-container">
+            <div className="table">
+                <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                    <TableContainer sx={{ maxHeight: 440 }}>
+                        <Table aria-label="sticky table">
+                            <TableHead>
+                                <StyledTableRow>
+                                    {columns.map((column) => (
+                                        <StyledTableCell
+                                            key={column.id}
+                                            align={"left"}
+                                            style={{ width: column.maxWidth }}
+                                        >
+                                            {column.label}
+                                        </StyledTableCell>
+                                    ))}
+                                </StyledTableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    messageLog.length > 0 ?
+                                        messageLog.map((row) => {
+                                            return (
+                                                <StyledTableRow hover role="checkbox" tabIndex={-1} id={row.id.toString()}>
+                                                    <StyledTableCell size="small">
+                                                        {row.time.toLocaleTimeString()}
+                                                    </StyledTableCell>
+                                                    <StyledTableCell size="small">
+                                                        {row.host.hostName} [{row.host.ip}]
+                                                    </StyledTableCell>
+                                                    <StyledTableCell size="small">
+                                                        {row.infoType}
+                                                    </StyledTableCell>
+                                                    <StyledTableCell size="small">
+                                                        {row.message}
+                                                    </StyledTableCell>
+                                                </StyledTableRow>
+                                            );
+                                        })
+                                        :
+                                        <div></div>
+                                }
 
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Paper>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Paper>
+            </div>
         </div >
     );
 }

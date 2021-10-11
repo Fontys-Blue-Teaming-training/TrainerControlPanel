@@ -11,4 +11,6 @@ export interface IControlPanelContext {
     setStartAttack: React.Dispatch<React.SetStateAction<boolean>>;
     stopAttack: boolean;
     setStopAttack: React.Dispatch<React.SetStateAction<boolean>>;
+    showView: string;
+    setShowView: React.Dispatch<React.SetStateAction<string>>
 }

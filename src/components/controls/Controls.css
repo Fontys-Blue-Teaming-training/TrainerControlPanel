@@ -1,36 +1,71 @@
-.align-horizontal {
-    padding-bottom: 10px;
+.dot {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
+.off {
+    background-color: red;
+}
 
-.start-button {
+.on {
+    background-color: green;
+}
+
+.attack {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.controls-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.controls-button {
+    background-color: #2a2b2e !important;
+    color: white !important;
+}
+
+.start {
     width: 49%;
-    margin: 500px;
-    margin-right: 2% !important;
+    margin-bottom: 10px !important;
 }
 
-.stop-button {
+.stop {
     width: 49%;
+    margin-bottom: 10px !important;
 }
 
-.reroll-button {
+.reroll {
     width: 100%;
-    padding: 10%;
 }
 
-.padding {
-    padding: 50px;
+.MuiFormControl-root  {
+    width: 100% !important;
 }
 
-.cbutton {
-    background-color: whitesmoke !important;
-    color: black !important;
+.controls {
+    width: 50%;
 }
 
-.attack-selection {
-    color: whitesmoke !important;
+.controls-container {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.MuiFormControl-root {
-    background-color: whitesmoke;
+.attack-overview {
+    width: 50%;
+}
+
+.status {
+    width: 100%;
 }

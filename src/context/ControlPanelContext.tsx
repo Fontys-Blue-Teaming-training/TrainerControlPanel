@@ -10,13 +10,15 @@ export const ControlPanelProvider = (props: { children: ReactNode }) => {
     const [attackSelection, setAttackSelection] = useState('');
     const [startAttack, setStartAttack] = useState(false);
     const [stopAttack, setStopAttack] = useState(false);
- 
+    const [showView, setShowView] = useState("controls");
+
     const value = {
         messageLog, setMessageLog,
         lastMessageId, setLastMessageId,
         attackSelection, setAttackSelection,
         startAttack, setStartAttack,
-        stopAttack, setStopAttack
+        stopAttack, setStopAttack,
+        showView, setShowView,
     }
 
     return (

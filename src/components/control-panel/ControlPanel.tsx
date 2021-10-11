@@ -1,21 +1,24 @@
+import { useContext } from 'react';
+import { ControlPanelContext } from '../../context/ControlPanelContext';
 import Controls from '../controls/Controls';
 import Logs from '../logs/Logs';
-import NetworkStatus from '../network-status/NetworkStatus';
+import Navbar from '../navbar/Navbar';
 import './ControlPanel.css';
 
 const ControlPanel = () => {
+    const { showView } = useContext(ControlPanelContext);
     return (
-        <div className="controlpanel-wrapper">
-            <div className="controlpanel-grid-layout">
-                <div className="network-status card card-image">
-                    <NetworkStatus />
-                </div>
-                <div className="controls card card-image">
-                    <Controls />
-                </div>
-                <div className="logs card card-image">
-                    <Logs />
-                </div>
+        <div className="app-wrapper">
+            <div className="nav-wrapper">
+                <Navbar />
+            </div>
+            <div className="view-wrapper">
+                {
+                    {
+                        "controls": <Controls />,
+                        "logs": <Logs />
+                    }[showView]
+                }
             </div>
         </div>
     )
