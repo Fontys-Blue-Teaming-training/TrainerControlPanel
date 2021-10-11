@@ -2,6 +2,7 @@ import { send } from 'process';
 import React, { useState, useCallback, useMemo, useRef, useEffect, useContext } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { ControlPanelContext } from '../context/ControlPanelContext';
+import { InfoType } from '../enum/InfoType';
 import { Host } from '../models/Host';
 import { InfoMessage } from '../models/InfoMessage';
 import { Scenario } from '../models/Scenario';
@@ -35,7 +36,7 @@ export const WebSocketClient = () => {
             const json = JSON.parse(lastMessage['data']);
             const date = new Date();
             const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
-            const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], json['InfoType']);
+            const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], InfoType[json['InfoType']]);
             //Add entry to message log
             setMessageLog(old => [...old, infoMessage]);
         }
@@ -43,7 +44,6 @@ export const WebSocketClient = () => {
 
     useEffect(() => {
         if (startAttack) {
-            console.log("hello");
             switch (attackSelection) {
                 case "":
                     console.log('Throw error.');
