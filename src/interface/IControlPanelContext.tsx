@@ -1,4 +1,5 @@
 import { InfoMessage } from "../models/InfoMessage";
+import { SystemInformation } from "../models/SystemInformation";
 
 export interface IControlPanelContext {
     messageLog: InfoMessage[];
@@ -12,5 +13,9 @@ export interface IControlPanelContext {
     stopAttack: boolean;
     setStopAttack: React.Dispatch<React.SetStateAction<boolean>>;
     showView: string;
-    setShowView: React.Dispatch<React.SetStateAction<string>>
+    setShowView: React.Dispatch<React.SetStateAction<string>>;
+    chartData: SystemInformation[];
+    setChartData: React.Dispatch<React.SetStateAction<SystemInformation[]>>;
+    changedChartData: boolean;
+    setChangedChartData: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -9,6 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import './Logs.css';
 import { ControlPanelContext } from '../../context/ControlPanelContext';
+import ChartCard from '../machine-status-card/ChartCard';
 
 
 const Logs = () => {

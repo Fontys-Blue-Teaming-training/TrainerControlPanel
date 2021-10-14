@@ -1,4 +1,3 @@
-import { send } from 'process';
 import React, { useState, useCallback, useMemo, useRef, useEffect, useContext } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { ControlPanelContext } from '../context/ControlPanelContext';
@@ -6,12 +5,14 @@ import { InfoType } from '../enum/InfoType';
 import { Host } from '../models/Host';
 import { InfoMessage } from '../models/InfoMessage';
 import { Scenario } from '../models/Scenario';
+import { SystemInformation } from '../models/SystemInformation';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
     const [socketUrl, setSocketUrl] = useState('ws://192.168.1.167:3002');
     const {
-        messageLog,
+        chartData,
+        setChartData,
         setMessageLog,
         lastMessageId,
         setLastMessageId,
@@ -29,6 +30,7 @@ export const WebSocketClient = () => {
     } = useWebSocket(socketUrl);
 
     useEffect(() => {
+
         if (lastMessage) {
             //Set id of message
             setLastMessageId(lastMessageId + 1);
@@ -37,8 +39,20 @@ export const WebSocketClient = () => {
             const date = new Date();
             const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
             const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], InfoType[json['InfoType']]);
-            //Add entry to message log
-            setMessageLog(old => [...old, infoMessage]);
+
+            if (lastMessage['data']['Host']['HostEnum'] === 0 || lastMessage['data']['Host']['HostEnum'] === 1) {
+                //Add entry to message log
+                setMessageLog(old => [...old, infoMessage]);
+            }
+            else {
+                const maxLength = 50;
+                const data = JSON.parse(infoMessage.message);
+                const sysInfo = new SystemInformation(new Date, data['CurrentSystemUptime'],
+                    data['CurrentCpuUsage'], data['currentRamUsage'], data['CurrentInternetConnectivity']);
+                if (chartData.length > maxLength) {
+                    setChartData(old => [...old.splice(0), sysInfo]);
+                }
+            }
         }
     }, [lastMessage]);
 

@@ -6,6 +6,7 @@ import './Controls.css';
 
 const Controls = () => {
     const {
+        chartData,
         attackSelection,
         setAttackSelection,
         startAttack,
@@ -28,7 +29,7 @@ const Controls = () => {
     return (
         <div className="controls-container">
             <div className="status">
-                <MachineStatus />
+                <MachineStatus sysInfo={chartData} />
             </div>
             <div className="attack-overview">
                 <div className="overview-card">
