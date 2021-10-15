@@ -9,7 +9,7 @@ import { SystemInformation } from '../models/SystemInformation';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
-    const [socketUrl, setSocketUrl] = useState('ws://192.168.1.167:3002');
+    const [socketUrl, setSocketUrl] = useState('ws://145.93.61.55:3002');
     const {
         chartData,
         setChartData,
@@ -32,27 +32,35 @@ export const WebSocketClient = () => {
     useEffect(() => {
 
         if (lastMessage) {
-            //Set id of message
-            setLastMessageId(lastMessageId + 1);
-            //Parse JSON and construct object
-            const json = JSON.parse(lastMessage['data']);
-            const date = new Date();
-            const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
-            const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], InfoType[json['InfoType']]);
-
-            if (lastMessage['data']['Host']['HostEnum'] === 0 || lastMessage['data']['Host']['HostEnum'] === 1) {
-                //Add entry to message log
-                setMessageLog(old => [...old, infoMessage]);
-            }
-            else {
-                const maxLength = 50;
-                const data = JSON.parse(infoMessage.message);
-                const sysInfo = new SystemInformation(new Date, data['CurrentSystemUptime'],
-                    data['CurrentCpuUsage'], data['currentRamUsage'], data['CurrentInternetConnectivity']);
-                if (chartData.length > maxLength) {
-                    setChartData(old => [...old.splice(0), sysInfo]);
+            try {
+                //Parse JSON and construct object
+                const json = JSON.parse(lastMessage['data']);
+                const date = new Date();
+                const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
+                const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], InfoType[json['InfoType']]);
+                if (json['Host']['HostEnum'] === 0 || json['Host']['HostEnum'] === 1) {
+                    //Add entry to message log
+                    setLastMessageId(lastMessageId + 1);
+                    setMessageLog(old => [...old, infoMessage]);
+                }
+                else {
+                    const maxLength = 50;
+                    const data = JSON.parse(infoMessage.message);
+                    const sysInfo = new SystemInformation(new Date, data['CurrentSystemUptime'],
+                        data['CurrentCpuUsage'], data['CurrentRamUsage'], data['CurrentInternetConnectivity']);
+                    if (chartData.length > maxLength) {
+                        setChartData(old => [...old.splice(0), sysInfo]);
+                        console.log(chartData);
+                    }
+                    else {
+                        setChartData(old => [...old, sysInfo]);
+                    }
                 }
             }
+            catch (error) {
+                console.log(error);
+            }
+
         }
     }, [lastMessage]);
 
@@ -87,7 +95,7 @@ export const WebSocketClient = () => {
     }, [stopAttack]);
 
     const connect = useCallback(() => {
-        setSocketUrl('ws://192.168.1.167:3002')
+        setSocketUrl('ws://145.93.61.55:3002')
         sendMessage('connect')
     }, []);
 

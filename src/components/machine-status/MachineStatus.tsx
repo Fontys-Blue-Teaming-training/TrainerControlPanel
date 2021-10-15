@@ -1,10 +1,37 @@
+import { useContext, useEffect, useState } from "react";
 import { Chart } from "react-chartjs-2";
+import { ControlPanelContext } from "../../context/ControlPanelContext";
 import { SystemInformation } from "../../models/SystemInformation";
 import ChartCard from "../machine-status-card/ChartCard";
 import MachineStatusCard from "../machine-status-card/MachineStatusCard";
 import './MachineStatus.css';
 
 const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
+    const { chartData } = useContext(ControlPanelContext);
+    const [currentRamusage, setCurrentRamUsage] = useState(0);
+    const [currentCpuusage, setCurrentCpuUsage] = useState(0);
+    const [ramData, setRamData] = useState([] as number[]);
+    const [cpuData, setCpuData] = useState([] as number[]);
+    const [date, setDate] = useState([] as string[]);
+    console.log(cpuData);
+
+    useEffect(() => {
+        const ramArray = [] as number[];
+        const cpuArray = [] as number[];
+        const dateArray = [] as string[];
+        chartData.forEach(item => {
+            ramArray.push(item.currentRamUsage);
+            dateArray.push(item.date.toLocaleTimeString());
+            cpuArray.push(item.currentCpuUsage);
+        });
+        if (chartData.length > 0) {
+            setCurrentCpuUsage(chartData[0].currentCpuUsage);
+            setCurrentRamUsage(chartData[0].currentRamUsage);
+        }
+        setDate(dateArray);
+        setRamData(ramArray);
+        setCpuData(cpuArray);
+    }, [chartData])
 
     return (
         <div>
@@ -15,13 +42,13 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
                             <div className="item">
                                 <MachineStatusCard
                                     title="CPU usage"
-                                    body={props.sysInfo[0].currentCpuUsage.toString()}
+                                    data={currentCpuusage}
                                 />
                             </div>
                             <div className="item">
                                 <MachineStatusCard
-                                    title="CPU usage"
-                                    body={props.sysInfo[0].currentRamUsage.toString()}
+                                    title="RAM Usage"
+                                    data={currentRamusage}
                                 />
                             </div>
                             <div className="item">
@@ -36,13 +63,15 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
                         <div className="graph">
                             <ChartCard
                                 label="test"
-                                dataType="cpu"
+                                data={ramData}
+                                date={date}
                             />
                         </div>
                         <div className="graph">
                             <ChartCard
                                 label="test"
-                                dataType="ram"
+                                data={cpuData}
+                                date={date}
                             />
                         </div>
                     </div>

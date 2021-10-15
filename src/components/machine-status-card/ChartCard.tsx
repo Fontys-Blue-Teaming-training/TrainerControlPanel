@@ -1,16 +1,17 @@
 import { Line } from 'react-chartjs-2';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import MetricChart from '../chart/MetricChart';
-import { SystemInformation } from '../../models/SystemInformation';
+import { ControlPanelContext } from '../../context/ControlPanelContext';
 
-const ChartCard = (props: { label: string, dataType: string }) => {
+const ChartCard = (props: { label: string, data: number[], date: string[] }) => {
 
     return (
         <div className="status-card">
             <div className="box box-down cyan">
                 <MetricChart
                     label={props.label}
-                    dataType={props.dataType}
+                    data={props.data}
+                    date={props.date}
                 />
             </div>
         </div>
