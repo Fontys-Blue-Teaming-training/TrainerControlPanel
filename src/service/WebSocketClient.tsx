@@ -48,7 +48,7 @@ export const WebSocketClient = () => {
                     const maxLength = 50;
                     const data = JSON.parse(infoMessage.message);
                     const sysInfo = new SystemInformation(new Date, data['CurrentSystemUptime'],
-                        data['CurrentCpuUsage'], data['CurrentRamUsage'], data['CurrentInternetConnectivity']);
+                        data['CurrentCpuPercentageUsage'], data['CurrentRamPercentageUsage'], data['CurrentInternetConnectivity']);
                     if (chartData.length > maxLength) {
                         setChartData(old => [...old.splice(0), sysInfo]);
                     }

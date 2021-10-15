@@ -13,7 +13,6 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
     const [ramData, setRamData] = useState([] as number[]);
     const [cpuData, setCpuData] = useState([] as number[]);
     const [date, setDate] = useState([] as string[]);
-    console.log(cpuData);
 
     useEffect(() => {
         const ramArray = [] as number[];
