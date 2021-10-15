@@ -9,7 +9,7 @@ import { SystemInformation } from '../models/SystemInformation';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
-    const [socketUrl, setSocketUrl] = useState('ws://145.93.61.55:3002');
+    const [socketUrl, setSocketUrl] = useState('ws://192.168.1.2:3002');
     const {
         chartData,
         setChartData,

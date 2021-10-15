@@ -77,7 +77,7 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
                     </div>
                 </div>
                 :
-                <div>Get fucked...</div>
+                <div>No data found...</div>
             }
         </div>
 
