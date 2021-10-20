@@ -7,7 +7,7 @@ const MachineStatusCard = (props: { data: any, title: string }) => {
             <div className="box box-down cyan">
                 {props.data && props.title ?
                     <>
-                        <h2>{props.data}</h2>
+                        <h2>{props.data.toString()}</h2>
                         <p>{props.title}</p>
                     </>
                     :
