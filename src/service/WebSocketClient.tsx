@@ -35,7 +35,6 @@ export const WebSocketClient = () => {
             try {
                 //Parse JSON and construct object
                 const json = JSON.parse(lastMessage['data']);
-                console.log(json);
                 const date = new Date();
                 const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
                 const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], InfoType[json['InfoType']]);
@@ -45,11 +44,10 @@ export const WebSocketClient = () => {
                     setMessageLog(old => [...old, infoMessage]);
                 }
                 else {
-                    const maxLength = 50;
                     const data = JSON.parse(infoMessage.message);
-                    const sysInfo = new SystemInformation(new Date, data['CurrentSystemUptime'],
+                    const sysInfo = new SystemInformation(new Date, data['CurrentSystemUpTime'],
                         data['CurrentCpuPercentageUsage'], data['CurrentRamPercentageUsage'], data['CurrentInternetConnectivity']);
-                    console.log(sysInfo);
+                    console.log('sysinfo', sysInfo);
                     setChartData(old => [...old, sysInfo]);
                 }
             }
