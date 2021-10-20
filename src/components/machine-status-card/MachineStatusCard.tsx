@@ -5,7 +5,7 @@ const MachineStatusCard = (props: { data: any, title: string }) => {
     return (
         <div className="status-card">
             <div className="box box-down cyan">
-                {props.data && props.title ?
+                {props.data != undefined && props.title ?
                     <>
                         <h2>{props.data.toString()}</h2>
                         <p>{props.title}</p>
