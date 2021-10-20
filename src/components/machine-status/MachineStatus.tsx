@@ -24,8 +24,8 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
             cpuArray.push(item.currentCpuUsage);
         });
         if (chartData.length > 0) {
-            setCurrentCpuUsage(chartData[0].currentCpuUsage);
-            setCurrentRamUsage(chartData[0].currentRamUsage);
+            setCurrentCpuUsage(chartData[chartData.length - 1].currentCpuUsage);
+            setCurrentRamUsage(chartData[chartData.length - 1].currentRamUsage);
         }
         setDate(dateArray);
         setRamData(ramArray);
