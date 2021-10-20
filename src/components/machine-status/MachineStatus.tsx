@@ -49,12 +49,12 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
                                     data={currentRamusage}
                                 />
                             </div>
-                            <div className="item">
+                            {/* <div className="item">
                                 <MachineStatusCard
                                     title="Internet access"
                                     data={chartData[chartData.length].currentInternetConnectivity}
                                 />
-                            </div>
+                            </div> */}
                             <div className="item">
                                 <MachineStatusCard
                                     title="RAM Usage"
