@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { Chart } from "react-chartjs-2";
 import { ControlPanelContext } from "../../context/ControlPanelContext";
 import { SystemInformation } from "../../models/SystemInformation";
 import ChartCard from "../machine-status-card/ChartCard";
