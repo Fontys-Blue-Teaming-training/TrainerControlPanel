@@ -1,7 +1,7 @@
 import { ICardData } from '../../interface/ICardData';
 import './MachineStatusCard.css';
 
-const MachineStatusCard = (props: { data: number, title: string }) => {
+const MachineStatusCard = (props: { data: any, title: string }) => {
     return (
         <div className="status-card">
             <div className="box box-down cyan">
