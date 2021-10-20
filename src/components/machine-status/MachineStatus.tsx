@@ -67,14 +67,14 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
                     <div className="metrics-graph">
                         <div className="graph">
                             <ChartCard
-                                label="test"
+                                label="Ram Usage"
                                 data={ramData}
                                 date={date}
                             />
                         </div>
                         <div className="graph">
                             <ChartCard
-                                label="test"
+                                label="CPU Usage"
                                 data={cpuData}
                                 date={date}
                             />
