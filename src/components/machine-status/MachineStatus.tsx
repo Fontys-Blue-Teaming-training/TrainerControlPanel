@@ -15,6 +15,7 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
     const [date, setDate] = useState([] as string[]);
 
     useEffect(() => {
+        console.log(chartData);
         const ramArray = [] as number[];
         const cpuArray = [] as number[];
         const dateArray = [] as string[];
@@ -27,9 +28,15 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
             setCurrentCpuUsage(chartData[0].currentCpuUsage);
             setCurrentRamUsage(chartData[0].currentRamUsage);
         }
+        if (ramData.length > 25) {
+            ramData.shift();
+            date.shift();
+            cpuData.shift();
+        }
         setDate(dateArray);
         setRamData(ramArray);
         setCpuData(cpuArray);
+
     }, [chartData])
 
     return (
@@ -61,14 +68,14 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
                     <div className="metrics-graph">
                         <div className="graph">
                             <ChartCard
-                                label="test"
+                                label="Ram usage"
                                 data={ramData}
                                 date={date}
                             />
                         </div>
                         <div className="graph">
                             <ChartCard
-                                label="test"
+                                label="CPU usage"
                                 data={cpuData}
                                 date={date}
                             />

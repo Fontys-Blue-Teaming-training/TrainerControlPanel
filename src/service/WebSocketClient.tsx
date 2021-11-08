@@ -9,7 +9,7 @@ import { SystemInformation } from '../models/SystemInformation';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
-    const [socketUrl, setSocketUrl] = useState('ws://192.168.1.2:3002');
+    const [socketUrl, setSocketUrl] = useState('ws://145.93.61.55:3002');
     const {
         chartData,
         setChartData,
@@ -35,7 +35,6 @@ export const WebSocketClient = () => {
             try {
                 //Parse JSON and construct object
                 const json = JSON.parse(lastMessage['data']);
-                console.log(json);
                 const date = new Date();
                 const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
                 const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], InfoType[json['InfoType']]);
