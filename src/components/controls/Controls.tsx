@@ -116,7 +116,7 @@ const Controls = () => {
             <div className="controls">
                 <div className="attack-selection">
                     <div className="box box-down">
-                        <h2>Team name</h2>
+                        <h2>Team</h2>
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                         <InputLabel>Team</InputLabel>
                         <Select
@@ -129,7 +129,7 @@ const Controls = () => {
                                 <em>None</em>
                             </MenuItem>
                             {allTeams.map((team) =>
-                                <MenuItem value={team.id}> { team.name } </MenuItem>
+                                <MenuItem value={team.id} key={team.id}> { team.name } </MenuItem>
                             )}
                         </Select>
                         </FormControl>
@@ -144,22 +144,23 @@ const Controls = () => {
                                 onChange={handleChange}
                                 label="Attack"
                             >
-                                <MenuItem value="">
+                                <MenuItem value="-1">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={"ssh-bruteforce"}>SSH Bruteforce</MenuItem>
-                                <MenuItem value={"placeholder"}>Man in the Middle</MenuItem>
-                                <MenuItem value={"placeholder"}>Example Attack</MenuItem>
+
+                                {allScenarios.map((scenario) =>
+                                    <MenuItem value={scenario.id} key={scenario.id}> { scenario.name } </MenuItem>
+                                )}
                             </Select>
                         </FormControl>
                         <br />
                         <br />
                         <div className="controls-buttons">
 
-                            <Button onClick={sendStartAttack} variant="contained" className="controls-button start">
+                            <Button onClick={sendStartAttack} disabled={attackSelection === -1  || teamSelection === -1 } variant="contained" className="controls-button start">
                                 Start Attack
                             </Button>
-                            <Button onClick={sendStopAttack} variant="contained" className="controls-button stop">
+                            <Button onClick={sendStopAttack} disabled={attackSelection === -1  || teamSelection === -1 } variant="contained" className="controls-button stop">
                                 Stop Attack
                             </Button>
                             <Button variant="contained" className="controls-button reroll">

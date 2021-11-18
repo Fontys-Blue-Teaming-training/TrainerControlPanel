@@ -65,30 +65,16 @@ export const WebSocketClient = () => {
 
     useEffect(() => {
         if (startAttack) {
-            switch (attackSelection) {
-                case "":
-                    console.log('Throw error.');
-                    break;
-                case "ssh-bruteforce":
-                    const scenario = new Scenario(0, 0)
-                    sendMessage(JSON.stringify(scenario));
-                    break;
-            }
+            const scenario = new Scenario(attackSelection, 0)
+            sendMessage(JSON.stringify(scenario));
         }
         setStartAttack(false);
     }, [startAttack]);
 
     useEffect(() => {
         if (stopAttack) {
-            switch (attackSelection) {
-                case "":
-                    console.log('Throw error.');
-                    break;
-                case "ssh-bruteforce":
-                    const scenario = new Scenario(0, 2)
-                    sendMessage(JSON.stringify(scenario));
-                    break;
-            }
+            const scenario = new Scenario(attackSelection, 2)
+            sendMessage(JSON.stringify(scenario));
         }
         setStopAttack(false);
     }, [stopAttack]);

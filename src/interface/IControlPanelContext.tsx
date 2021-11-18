@@ -8,8 +8,8 @@ export interface IControlPanelContext {
     setMessageLog: React.Dispatch<React.SetStateAction<InfoMessage[]>>;
     lastMessageId: number;
     setLastMessageId: React.Dispatch<React.SetStateAction<number>>;
-    attackSelection: string;
-    setAttackSelection: React.Dispatch<React.SetStateAction<string>>;
+    attackSelection: number;
+    setAttackSelection: React.Dispatch<React.SetStateAction<number>>;
     teamSelection: number;
     setTeamSelection: React.Dispatch<React.SetStateAction<number>>;
     startAttack: boolean;

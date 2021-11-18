@@ -13,7 +13,7 @@ export const ControlPanelProvider = (props: { children: ReactNode }) => {
     const [allTeams, setAllTeams] = useState([] as Team[]);
     const [allScenarios, setAllScenarios] = useState([] as ScenarioEntry[]);
     const [lastMessageId, setLastMessageId] = useState(1);
-    const [attackSelection, setAttackSelection] = useState('');
+    const [attackSelection, setAttackSelection] = useState(-1);
     const [teamSelection, setTeamSelection] = useState(-1);
     const [startAttack, setStartAttack] = useState(false);
     const [stopAttack, setStopAttack] = useState(false);
