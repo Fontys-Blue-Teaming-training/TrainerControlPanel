@@ -32,14 +32,13 @@
     color: white !important;
 }
 
-.start {
+.start, .stop {
     width: 49%;
     margin-bottom: 10px !important;
 }
 
-.stop {
-    width: 49%;
-    margin-bottom: 10px !important;
+.stop:disabled, .start:disabled {
+    background-color: grey !important;
 }
 
 .reroll {

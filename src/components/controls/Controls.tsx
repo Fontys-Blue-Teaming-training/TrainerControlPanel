@@ -1,30 +1,86 @@
 import { Button, FormControl, Input, InputLabel, MenuItem, Select } from "@mui/material";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ControlPanelContext } from "../../context/ControlPanelContext";
 import MachineStatus from "../machine-status/MachineStatus";
+import { ScenarioHttpClient } from '../../service/ScenarioHttpClient';
+import { TeamHttpClient } from '../../service/TeamHttpClient';
 import './Controls.css';
+import { Team } from "../../models/Team";
+import { Scenario } from "../../models/Scenario";
+import { ScenarioEntry } from "../../models/ScenarioEntry";
 
 const Controls = () => {
+    const scenarioHttpClient = new ScenarioHttpClient();
+    const teamHttpClient = new TeamHttpClient();
     const {
         chartData,
+        allScenarios,
+        allTeams,
         attackSelection,
+        teamSelection,
         setAttackSelection,
+        setTeamSelection,
         startAttack,
         setStartAttack,
-        setStopAttack
+        setStopAttack,
+        setAllTeams,
+        setAllScenarios
     } = useContext(ControlPanelContext);
 
     const handleChange = (event: any) => {
         setAttackSelection(event.target.value);
     };
 
+    const handleTeamChange = (event: any) => {
+        setTeamSelection(event.target.value);
+    };
+
     const sendStartAttack = () => {
-        setStartAttack(true);
+        if(teamSelection < 1) {
+            alert("Teamid cannot be empty!");
+            return;
+        }
+
+        scenarioHttpClient.toggleScenario({teamId: teamSelection, scenarioId: 0 })
+        .then((res: any) => {
+            if(res['success']) {
+                setStartAttack(true);
+            }
+            else {
+                console.log('failed')
+            }
+        })
     }
 
     const sendStopAttack = () => {
         setStopAttack(true);
     }
+
+    useEffect(() => {
+        teamHttpClient.getTeams()
+        .then((res: any) => {
+            if(res['success']) {
+                let array: Team[];
+                array = res['message'];
+                setAllTeams(array);
+            }
+            else {
+                console.log('failed')
+            }
+        })
+
+        scenarioHttpClient.getScenarios()
+        .then((res: any) => {
+            if(res['success']) {
+                let array: ScenarioEntry[];
+                array = res['message'];
+                setAllScenarios(array);
+            }
+            else {
+                console.log('failed')
+            }
+        })
+    }, []);
 
     return (
         <div className="controls-container">
@@ -60,6 +116,23 @@ const Controls = () => {
             <div className="controls">
                 <div className="attack-selection">
                     <div className="box box-down">
+                        <h2>Team</h2>
+                        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                        <InputLabel>Team</InputLabel>
+                        <Select
+                            className="select"
+                            value={teamSelection}
+                            onChange={handleTeamChange}
+                            label="Team"
+                        >
+                            <MenuItem value="-1">
+                                <em>None</em>
+                            </MenuItem>
+                            {allTeams.map((team) =>
+                                <MenuItem value={team.id} key={team.id}> { team.name } </MenuItem>
+                            )}
+                        </Select>
+                        </FormControl>
                         <h2>Select Attack</h2>
                         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                             <InputLabel id="demo-simple-select-standard-label">Attack</InputLabel>
@@ -71,22 +144,23 @@ const Controls = () => {
                                 onChange={handleChange}
                                 label="Attack"
                             >
-                                <MenuItem value="">
+                                <MenuItem value="-1">
                                     <em>None</em>
                                 </MenuItem>
-                                <MenuItem value={"ssh-bruteforce"}>SSH Bruteforce</MenuItem>
-                                <MenuItem value={"placeholder"}>Man in the Middle</MenuItem>
-                                <MenuItem value={"placeholder"}>Example Attack</MenuItem>
+
+                                {allScenarios.map((scenario) =>
+                                    <MenuItem value={scenario.id} key={scenario.id}> { scenario.name } </MenuItem>
+                                )}
                             </Select>
                         </FormControl>
                         <br />
                         <br />
                         <div className="controls-buttons">
 
-                            <Button onClick={sendStartAttack} variant="contained" className="controls-button start">
+                            <Button onClick={sendStartAttack} disabled={attackSelection === -1  || teamSelection === -1 } variant="contained" className="controls-button start">
                                 Start Attack
                             </Button>
-                            <Button onClick={sendStopAttack} variant="contained" className="controls-button stop">
+                            <Button onClick={sendStopAttack} disabled={attackSelection === -1  || teamSelection === -1 } variant="contained" className="controls-button stop">
                                 Stop Attack
                             </Button>
                             <Button variant="contained" className="controls-button reroll">
