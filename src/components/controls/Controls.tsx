@@ -6,7 +6,6 @@ import { ScenarioHttpClient } from '../../service/ScenarioHttpClient';
 import { TeamHttpClient } from '../../service/TeamHttpClient';
 import './Controls.css';
 import { Team } from "../../models/Team";
-import { Scenario } from "../../models/Scenario";
 import { ScenarioEntry } from "../../models/ScenarioEntry";
 
 const Controls = () => {
@@ -41,7 +40,7 @@ const Controls = () => {
             return;
         }
 
-        scenarioHttpClient.toggleScenario({teamId: teamSelection, scenarioId: 0 })
+        scenarioHttpClient.toggleScenario({teamId: teamSelection, scenarioId: attackSelection })
         .then((res: any) => {
             if(res['success']) {
                 setStartAttack(true);
