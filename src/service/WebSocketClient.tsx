@@ -65,7 +65,7 @@ export const WebSocketClient = () => {
 
     useEffect(() => {
         if (startAttack) {
-            const scenario = new Scenario(attackSelection, 1)
+            const scenario = new Scenario(1, 0)
             sendMessage(JSON.stringify(scenario));
         }
         setStartAttack(false);
@@ -73,7 +73,7 @@ export const WebSocketClient = () => {
 
     useEffect(() => {
         if (stopAttack) {
-            const scenario = new Scenario(attackSelection, 2)
+            const scenario = new Scenario(1, 2)
             sendMessage(JSON.stringify(scenario));
         }
         setStopAttack(false);
