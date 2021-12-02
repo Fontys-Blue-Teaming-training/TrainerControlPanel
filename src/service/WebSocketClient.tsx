@@ -33,11 +33,15 @@ export const WebSocketClient = () => {
 
         if (lastMessage) {
             try {
+
                 //Parse JSON and construct object
                 const json = JSON.parse(lastMessage['data']);
+                if (json['InfoType']) {
+
+                }
                 const date = new Date();
                 const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
-                const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], InfoType[json['InfoType']]);
+                const infoMessage = new InfoMessage(lastMessageId, date, host, json['Message'], json['InfoType']);
                 if (json['Host']['HostEnum'] === 0 || json['Host']['HostEnum'] === 1) {
                     //Add entry to message log
                     setLastMessageId(lastMessageId + 1);

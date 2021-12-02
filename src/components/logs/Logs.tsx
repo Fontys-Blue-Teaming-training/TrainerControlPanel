@@ -99,7 +99,7 @@ const Logs = () => {
                                                         {row.host.hostName} [{row.host.ip}]
                                                     </StyledTableCell>
                                                     <StyledTableCell size="small">
-                                                        {row.infoType}
+                                                        {row.infoType.toString()}
                                                     </StyledTableCell>
                                                     <StyledTableCell size="small">
                                                         {row.message}

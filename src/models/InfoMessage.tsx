@@ -6,9 +6,9 @@ export class InfoMessage {
     time: Date;
     host: Host;
     message: string;
-    infoType: string;
+    infoType: InfoType;
 
-    constructor(id: number, time: Date, host: Host, message: string, infoType: string) {
+    constructor(id: number, time: Date, host: Host, message: string, infoType: InfoType) {
         this.id = id;
         this.time = time;
         this.host = host;

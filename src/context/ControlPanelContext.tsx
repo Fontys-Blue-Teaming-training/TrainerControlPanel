@@ -14,7 +14,7 @@ export const ControlPanelProvider = (props: { children: ReactNode }) => {
     const [allScenarios, setAllScenarios] = useState([] as ScenarioEntry[]);
     const [lastMessageId, setLastMessageId] = useState(1);
     const [attackSelection, setAttackSelection] = useState(-1);
-    const [teamSelection, setTeamSelection] = useState(-1);
+    const [teamSelection, setTeamSelection] = useState([] as number[]);
     const [startAttack, setStartAttack] = useState(false);
     const [stopAttack, setStopAttack] = useState(false);
     const [showView, setShowView] = useState("controls");

@@ -1,6 +1,6 @@
 export enum InfoType {
-    INFO,
-    WARNING,
-    ERROR,
-    DEBUG
+    INFO = 0,
+    WARNING = 1,
+    ERROR = 2,
+    DEBUG = -1
 }

@@ -35,7 +35,7 @@ const Controls = () => {
     };
 
     const sendStartAttack = () => {
-        if (teamSelection < 1) {
+        if (teamSelection.length < 1) {
             alert("Teamid cannot be empty!");
             return;
         }
@@ -123,6 +123,7 @@ const Controls = () => {
                                 value={teamSelection}
                                 onChange={handleTeamChange}
                                 label="Team"
+                                multiple
                             >
                                 <MenuItem value="-1">
                                     <em>None</em>
@@ -156,10 +157,10 @@ const Controls = () => {
                         <br />
                         <div className="controls-buttons">
 
-                            <Button onClick={sendStartAttack} disabled={attackSelection === -1 || teamSelection === -1} variant="contained" className="controls-button start">
+                            <Button onClick={sendStartAttack} disabled={attackSelection === -1 || teamSelection.length < 1} variant="contained" className="controls-button start">
                                 Start Attack
                             </Button>
-                            <Button onClick={sendStopAttack} disabled={attackSelection === -1 || teamSelection === -1} variant="contained" className="controls-button stop">
+                            <Button onClick={sendStopAttack} disabled={attackSelection === -1 || teamSelection.length < 1} variant="contained" className="controls-button stop">
                                 Stop Attack
                             </Button>
                             <Button variant="contained" className="controls-button reroll">
