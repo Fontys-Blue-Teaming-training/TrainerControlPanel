@@ -156,7 +156,6 @@ const Controls = () => {
                         <br />
                         <br />
                         <div className="controls-buttons">
-
                             <Button onClick={sendStartAttack} disabled={attackSelection === -1 || teamSelection.length < 1} variant="contained" className="controls-button start">
                                 Start Attack
                             </Button>

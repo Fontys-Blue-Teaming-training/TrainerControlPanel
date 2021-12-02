@@ -10,7 +10,7 @@ import { TeamHttpClient } from './TeamHttpClient';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
-    const [socketUrl, setSocketUrl] = useState('ws://145.93.61.55:3002');
+    const [socketUrl, setSocketUrl] = useState('ws://192.168.1.2:3002');
     const teamHttpClient = new TeamHttpClient();
     const {
         chartData,
@@ -96,7 +96,7 @@ export const WebSocketClient = () => {
     }, [stopAttack]);
 
     const connect = useCallback(() => {
-        setSocketUrl('ws://145.93.61.55:3002')
+        setSocketUrl('ws://192.168.1.2:3002')
         sendMessage('connect')
     }, []);
 

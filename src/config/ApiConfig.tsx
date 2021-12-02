@@ -1,3 +1,3 @@
 export const apiConfig = {
-    url: "https://localhost:44352/"
+    url: "https://192.168.1.2:5000/"
 }
