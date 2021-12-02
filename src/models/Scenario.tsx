@@ -3,7 +3,7 @@ import { Scenarios } from "../enum/Scenarios";
 
 export class Scenario {
     scenario: Scenarios;
-    action: ScenarioActions
+    action: ScenarioActions;
 
     constructor(scenario: Scenarios, action: ScenarioActions) {
         this.scenario = scenario;

@@ -40,7 +40,7 @@ const Controls = () => {
             return;
         }
 
-        scenarioHttpClient.toggleScenario({ teamId: teamSelection, scenarioId: attackSelection })
+        scenarioHttpClient.toggleScenario({ teamIds: teamSelection, scenarioId: attackSelection })
             .then((res: any) => {
                 if (res['success']) {
                     setStartAttack(true);

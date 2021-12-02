@@ -1,15 +1,17 @@
 import React, { useState, useCallback, useMemo, useRef, useEffect, useContext } from 'react';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import { ControlPanelContext } from '../context/ControlPanelContext';
-import { InfoType } from '../enum/InfoType';
 import { Host } from '../models/Host';
 import { InfoMessage } from '../models/InfoMessage';
 import { Scenario } from '../models/Scenario';
 import { SystemInformation } from '../models/SystemInformation';
+import { Team } from '../models/Team';
+import { TeamHttpClient } from './TeamHttpClient';
 
 export const WebSocketClient = () => {
     //Public API that will echo messages sent to it back to the client
     const [socketUrl, setSocketUrl] = useState('ws://145.93.61.55:3002');
+    const teamHttpClient = new TeamHttpClient();
     const {
         chartData,
         setChartData,
@@ -20,7 +22,8 @@ export const WebSocketClient = () => {
         setStartAttack,
         attackSelection,
         stopAttack,
-        setStopAttack
+        setStopAttack,
+        setAllTeams
     } = useContext(ControlPanelContext);
 
     const {
@@ -33,11 +36,20 @@ export const WebSocketClient = () => {
 
         if (lastMessage) {
             try {
-
                 //Parse JSON and construct object
                 const json = JSON.parse(lastMessage['data']);
-                if (json['InfoType']) {
-
+                if (json['InfoType'] === 3) {
+                    teamHttpClient.getTeams()
+                        .then((res: any) => {
+                            if (res['success']) {
+                                let array: Team[];
+                                array = res['message'];
+                                setAllTeams(array);
+                            }
+                            else {
+                                console.log('failed')
+                            }
+                        })
                 }
                 const date = new Date();
                 const host = new Host(json['Host']['Ip'], json['Host']['HostEnum'], json['Host']['HostName']);
