@@ -2,11 +2,11 @@ import { ScenarioActions } from "../enum/ScenarioActions";
 import { Scenarios } from "../enum/Scenarios";
 
 export class Scenario {
-    scenarios: Scenarios;
+    scenario: Scenarios;
     action: ScenarioActions
-    
-    constructor(scenarios: Scenarios, action: ScenarioActions) {
-        this.scenarios = scenarios;
+
+    constructor(scenario: Scenarios, action: ScenarioActions) {
+        this.scenario = scenario;
         this.action = action;
     }
 }
