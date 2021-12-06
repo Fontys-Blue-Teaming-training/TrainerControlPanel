@@ -66,12 +66,13 @@ export const WebSocketClient = () => {
                     const data = JSON.parse(infoMessage.message);
                     const sysInfo = new SystemInformation(new Date, data['CurrentSystemUptime'],
                         data['CurrentCpuPercentageUsage'], data['CurrentRamPercentageUsage'], data['CurrentInternetConnectivity']);
-                    if (chartData.length > maxLength) {
-                        setChartData(old => [...old.splice(0), sysInfo]);
-                    }
-                    else {
+                    
+                        if(chartData.length > 25) {
+                          const tempArray = JSON.parse(JSON.stringify(chartData));
+                          tempArray.shift();
+                          setChartData(tempArray);
+                        }
                         setChartData(old => [...old, sysInfo]);
-                    }
                 }
             }
             catch (error) {

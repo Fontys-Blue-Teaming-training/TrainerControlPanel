@@ -15,26 +15,17 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
     const [date, setDate] = useState([] as string[]);
 
     useEffect(() => {
-        console.log(chartData);
         const ramArray = [] as number[];
         const cpuArray = [] as number[];
         const dateArray = [] as string[];
         chartData.forEach(item => {
             ramArray.push(item.currentRamUsage);
-            dateArray.push(item.date.toLocaleTimeString());
+            dateArray.push(new Date(item.date).toLocaleTimeString());
             cpuArray.push(item.currentCpuUsage);
         });
         if (chartData.length > 0) {
             setCurrentCpuUsage(chartData[0].currentCpuUsage);
             setCurrentRamUsage(chartData[0].currentRamUsage);
-        }
-        if (ramData.length > 25) {
-            ramData.shift();
-            ramData.forEach(element => console.log(element));
-            date.shift();
-            date.forEach(element => console.log(element));
-            cpuData.shift();
-            cpuData.forEach(element => console.log(element));
         }
         setDate(dateArray);
         setRamData(ramArray);
