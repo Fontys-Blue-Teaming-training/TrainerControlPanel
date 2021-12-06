@@ -29,12 +29,23 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
             setCurrentRamUsage(chartData[0].currentRamUsage);
         }
         if (ramData.length > 25) {
-            ramData.shift();
-            ramData.forEach(element => console.log(element));
-            date.shift();
-            date.forEach(element => console.log(element));
-            cpuData.shift();
-            cpuData.forEach(element => console.log(element));
+            const ramArr = ramData;
+            ramArr.shift();
+            setRamData(ramArr);
+
+            //ramData.shift();
+
+            const dateArr = dateArray;
+            dateArr.shift();
+            setDate(dateArr);
+
+            //date.shift();
+
+            const cpuArr = cpuArray;
+            cpuArr.shift();
+            setCpuData(cpuArr);
+            
+            //cpuData.shift();
         }
         setDate(dateArray);
         setRamData(ramArray);
