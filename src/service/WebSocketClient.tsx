@@ -69,7 +69,9 @@ export const WebSocketClient = () => {
                         setChartData(old => [...old, sysInfo]);
                         if(chartData.length > 3) {
                           const tempArray = JSON.parse(JSON.stringify(chartData));
+                          console.log('before',tempArray);
                           tempArray.splice(0);
+                          console.log('after',tempArray);
                           setChartData(tempArray);
                         }
                 }

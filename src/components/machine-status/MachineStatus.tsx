@@ -15,7 +15,6 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
     const [date, setDate] = useState([] as string[]);
 
     useEffect(() => {
-        console.log(chartData);
         const ramArray = [] as number[];
         const cpuArray = [] as number[];
         const dateArray = [] as string[];
