@@ -67,11 +67,9 @@ export const WebSocketClient = () => {
                     const sysInfo = new SystemInformation(new Date, data['CurrentSystemUptime'],
                         data['CurrentCpuPercentageUsage'], data['CurrentRamPercentageUsage'], data['CurrentInternetConnectivity']);
                     
-                        if(chartData.length > 3) {
+                        if(chartData.length > 25) {
                           const tempArray = JSON.parse(JSON.stringify(chartData));
-                          console.log('before',tempArray);
                           tempArray.shift();
-                          console.log('after',tempArray);
                           setChartData(tempArray);
                         }
                         setChartData(old => [...old, sysInfo]);
