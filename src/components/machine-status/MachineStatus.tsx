@@ -20,7 +20,7 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
         const dateArray = [] as string[];
         chartData.forEach(item => {
             ramArray.push(item.currentRamUsage);
-            dateArray.push(item.date.toLocaleTimeString());
+            dateArray.push(new Date(item.date).toLocaleTimeString());
             cpuArray.push(item.currentCpuUsage);
         });
         if (chartData.length > 0) {
