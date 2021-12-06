@@ -48,11 +48,22 @@ const Controls = () => {
                 else {
                     console.log('failed')
                 }
-            })
+            });
     }
 
     const sendStopAttack = () => {
-        setStopAttack(true);
+
+        scenarioHttpClient.toggleScenario({ teamIds: teamSelection, scenarioId: attackSelection })
+            .then((res: any) => {
+                if (res['success']) {
+                    setStopAttack(true);
+                }
+                else {
+                    console.log('failed')
+                }
+            });
+
+
     }
 
     useEffect(() => {

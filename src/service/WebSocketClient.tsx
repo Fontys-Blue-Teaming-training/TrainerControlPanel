@@ -96,8 +96,8 @@ export const WebSocketClient = () => {
     }, [stopAttack]);
 
     const connect = useCallback(() => {
-        setSocketUrl('ws://192.168.1.2:3002')
-        sendMessage('connect')
+        setSocketUrl('ws://192.168.1.2:3002');
+        sendMessage('connect');
     }, []);
 
     const connectionStatus = {
