@@ -30,8 +30,11 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
         }
         if (ramData.length > 25) {
             ramData.shift();
+            ramData.forEach(element => console.log(element));
             date.shift();
+            date.forEach(element => console.log(element));
             cpuData.shift();
+            cpuData.forEach(element => console.log(element));
         }
         setDate(dateArray);
         setRamData(ramArray);
