@@ -70,7 +70,7 @@ export const WebSocketClient = () => {
                         if(chartData.length > 3) {
                           const tempArray = JSON.parse(JSON.stringify(chartData));
                           console.log('before',tempArray);
-                          tempArray.splice(0);
+                          tempArray.shift();
                           console.log('after',tempArray);
                           setChartData(tempArray);
                         }
