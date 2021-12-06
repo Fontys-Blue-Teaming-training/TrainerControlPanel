@@ -30,7 +30,10 @@ export const WebSocketClient = () => {
         sendMessage,
         lastMessage,
         readyState,
-    } = useWebSocket(socketUrl);
+    } = useWebSocket(socketUrl, {
+        onOpen: () => console.log('opened'),
+        shouldReconnect: (closeEvent) => true,
+    });
 
     useEffect(() => {
 
