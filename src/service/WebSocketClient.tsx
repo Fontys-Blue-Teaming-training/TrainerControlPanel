@@ -30,7 +30,9 @@ export const WebSocketClient = () => {
         sendMessage,
         lastMessage,
         readyState,
-    } = useWebSocket(socketUrl);
+    } = useWebSocket(socketUrl, {
+        shouldReconnect: (closeEvent) => true,
+    });
 
     useEffect(() => {
 
