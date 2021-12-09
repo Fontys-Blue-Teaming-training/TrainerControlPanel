@@ -67,29 +67,29 @@ const Controls = () => {
     }
 
     useEffect(() => {
-        // teamHttpClient.getTeams()
-        //     .then((res: any) => {
-        //         if (res['success']) {
-        //             let array: Team[];
-        //             array = res['message'];
-        //             setAllTeams(array);
-        //         }
-        //         else {
-        //             console.log('failed')
-        //         }
-        //     })
+        teamHttpClient.getTeams()
+            .then((res: any) => {
+                if (res['success']) {
+                    let array: Team[];
+                    array = res['message'];
+                    setAllTeams(array);
+                }
+                else {
+                    console.log('failed')
+                }
+            })
 
-        // scenarioHttpClient.getScenarios()
-        //     .then((res: any) => {
-        //         if (res['success']) {
-        //             let array: ScenarioEntry[];
-        //             array = res['message'];
-        //             setAllScenarios(array);
-        //         }
-        //         else {
-        //             console.log('failed')
-        //         }
-        //     })
+        scenarioHttpClient.getScenarios()
+            .then((res: any) => {
+                if (res['success']) {
+                    let array: ScenarioEntry[];
+                    array = res['message'];
+                    setAllScenarios(array);
+                }
+                else {
+                    console.log('failed')
+                }
+            })
     }, []);
 
     return (
