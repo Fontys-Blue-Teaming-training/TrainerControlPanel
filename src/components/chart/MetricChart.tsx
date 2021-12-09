@@ -1,3 +1,4 @@
+import { duration } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { ControlPanelContext } from '../../context/ControlPanelContext';
@@ -14,6 +15,9 @@ const MetricChart = (props: { label: string, data: number[], date: string[] }) =
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgba(255, 99, 132, 0.2)',
+                animation: {
+                    duration: 0
+                }
             },
         ],
     };
