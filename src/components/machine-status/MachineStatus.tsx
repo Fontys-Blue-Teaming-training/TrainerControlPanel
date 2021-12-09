@@ -35,50 +35,48 @@ const MachineStatus = (props: { sysInfo: SystemInformation[] }) => {
 
     return (
         <div>
-            {props.sysInfo.length > 0 ?
-                <div className="status-view">
+
+            <div className="status-view">
+                <div className="machine-metrics">
                     <div className="machine-metrics">
-                        <div className="machine-metrics">
-                            <div className="item">
-                                <MachineStatusCard
-                                    title="CPU usage"
-                                    data={currentCpuusage}
-                                />
-                            </div>
-                            <div className="item">
-                                <MachineStatusCard
-                                    title="RAM Usage"
-                                    data={currentRamusage}
-                                />
-                            </div>
-                            <div className="item">
-
-                            </div>
-                            <div className="item">
-
-                            </div>
-                        </div>
-                    </div>
-                    <div className="metrics-graph">
-                        <div className="graph">
-                            <ChartCard
-                                label="Ram usage"
-                                data={ramData}
-                                date={date}
+                        <div className="item">
+                            <MachineStatusCard
+                                title="CPU usage"
+                                data={20}
                             />
                         </div>
-                        <div className="graph">
-                            <ChartCard
-                                label="CPU usage"
-                                data={cpuData}
-                                date={date}
+                        <div className="item">
+                            <MachineStatusCard
+                                title="RAM Usage"
+                                data={20}
                             />
+                        </div>
+                        <div className="item">
+
+                        </div>
+                        <div className="item">
+
                         </div>
                     </div>
                 </div>
-                :
-                <div>No data found...</div>
-            }
+                <div className="metrics-graph">
+                    <div className="graph">
+                        <ChartCard
+                            label="Ram usage"
+                            data={[20, 20, 20, 20]}
+                            date={date}
+                        />
+                    </div>
+                    <div className="graph">
+                        <ChartCard
+                            label="CPU usage"
+                            data={[20, 20, 20, 20]}
+                            date={date}
+                        />
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 

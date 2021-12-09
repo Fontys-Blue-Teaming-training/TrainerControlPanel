@@ -7,7 +7,7 @@ import { ChartDataSorter } from './service/ChartDataSorter';
 function App() {
   return (
     <div className="App">
-      <WebSocketClient />
+      {/* <WebSocketClient /> */}
       <ControlPanel />
     </div>
   );
