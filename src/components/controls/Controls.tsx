@@ -97,32 +97,6 @@ const Controls = () => {
             <div className="status">
                 <MachineStatus sysInfo={chartData} />
             </div>
-            <div className="attack-overview">
-                <div className="overview-card">
-                    <div className="box box-down cyan">
-                        <h2>Overview Attacks</h2>
-                        <br />
-                        <div className="half-width">
-                            <div className="attack">
-                                <div>SSH BruteForce</div>
-                                <div className="dot off"></div>
-                            </div>
-                            <div className="attack">
-                                <div>Man in the Middle</div>
-                                <div className="dot off"></div>
-                            </div>
-                            <div className="attack">
-                                <div>Some Attack</div>
-                                <div className="dot on"></div>
-                            </div>
-                            <div className="attack">
-                                <div>Another Attack</div>
-                                <div className="dot off"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div className="controls">
                 <div className="attack-selection">
                     <div className="box box-down">
